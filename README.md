@@ -1,8 +1,12 @@
-# rb
+Base url:
 
-Base url: https://gp-rb.herokuapp.com/
+https://gp-rb.herokuapp.com/
+
+
 
 ## PostMan
+
+https://www.getpostman.com/collections/376ddb0a589f696bc2f4
 
 
 ## Libraries
