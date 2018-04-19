@@ -1,29 +1,37 @@
 package com.gerardoperrucci.gpredbee.controller;
-
-import java.sql.DriverManager;
-import java.text.SimpleDateFormat;
+// Java
 import java.util.ArrayList;
 import java.util.List;
-
+// Spring
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+// Twiiter4j
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
-
+// Custom
 import com.gerardoperrucci.gpredbee.dto.SearchDTO;
+import com.gerardoperrucci.gpredbee.dto.TopicDTO;
+import com.gerardoperrucci.gpredbee.model.Topic;
+import com.gerardoperrucci.gpredbee.repository.TopicRepository;
+
+
 
 @RestController
 @RequestMapping("/twitter")
 public class TwitterController {
 
+    @Autowired
+    private TopicRepository topicRepository;
+
     private Twitter twitter;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public TwitterController() {
         twitter = TwitterFactory.getSingleton();
@@ -35,32 +43,35 @@ public class TwitterController {
         return tweets;
     }
 
-    public void printStatus(Status status) {
-        System.out.println("----------------------------------------------------------");
-        System.out.println(String.format("User [%s]", status.getUser().getScreenName()));
-        System.out.println(status.getText());
-        System.out.println(sdf.format(status.getCreatedAt()));
-        System.out.println(String.format("RT[%d] FAV[%d]", status.getRetweetCount(), status.getFavoriteCount()));
-        System.out.println("----------------------------------------------------------");
-    }
-
-    public void printStatus(List<Status> status) {
-        for (Status tweet : status) {
-            printStatus(tweet);
-        }
-    }
-
     @PostMapping("/search")
     public List<?> searchTweets(@RequestBody SearchDTO searchDTO) {
             List<Status> result;
 			try {
 				result = this.query(searchDTO.getSearch());
-				this.printStatus(result);
                 return result;
 			} catch (TwitterException e) {
 				e.printStackTrace();
 			}
         return  new ArrayList<>();
     }
+
+
+    @PostMapping("topic")
+    public Topic createTopic(@RequestBody TopicDTO req) {
+
+        Topic topic = new Topic();
+        topic.setInterest(req.getInterest());
+        topic.setType(req.getType());
+        Topic saved = topicRepository.save(topic);
+        return saved;
+    }
+
+    @GetMapping("topic")
+    public List<Topic> createTopic() {
+        return topicRepository.findAll();
+    }
+
+
+
 
 }

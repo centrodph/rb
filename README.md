@@ -34,6 +34,14 @@ https://geeks-mexico.com/2016/09/21/crea-un-buscador-en-twitter-con-java-utiliza
 
 https://stackoverflow.com/a/39017839/6620340
 
+
+#### CrudRepository
+
+https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html
+
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
+
+
 #### Websocket:
 
 http://twitter4j.org/javadoc/twitter4j/TwitterStream.html
@@ -45,3 +53,20 @@ https://medium.com/oril/spring-boot-websockets-angular-5-f2f4b1c14cee
 Dynamic mapping and sendTo
 
 https://stackoverflow.com/questions/27047310/path-variables-in-spring-websockets-sendto-mapping
+
+
+Non-blocking
+
+https://spring.io/guides/gs/async-method/
+
+
+
+
+## Twitter4j
+
+Status status
+       status.getUser().getScreenName()
+       status.getText()
+       status.getCreatedAt()
+       status.getRetweetCount()
+       status.getFavoriteCount()
