@@ -3,10 +3,10 @@ Base url:
 https://gp-rb.herokuapp.com/
 
 
-
 ## PostMan
 
 https://www.getpostman.com/collections/376ddb0a589f696bc2f4
+
 
 
 ## Libraries
@@ -70,3 +70,19 @@ Status status
        status.getCreatedAt()
        status.getRetweetCount()
        status.getFavoriteCount()
+
+
+
+## TODO:
+
+-  Crear topic, identificando si es interés o un usuario. Intereses => “#”, Usuarios => “@”
+
+-  Anaizar el como manejar el "board".
+
+-  Analizar como determinar nuevos mensajes.
+
+-  Buscar nuevos mensajes de esa suscripción. La búsqueda del proceso se ejecuta a intervalos regulares.
+
+-  Metodo para suscribirse a topicos.
+
+-  Exponer actualizaciones.
