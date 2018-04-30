@@ -55,6 +55,12 @@ Dynamic mapping and sendTo
 https://stackoverflow.com/questions/27047310/path-variables-in-spring-websockets-sendto-mapping
 
 
+Connect service or Controller with socket endpoint
+
+
+https://stackoverflow.com/questions/42207513/sending-message-to-client-periodically-via-spring-web-socket/42208928
+
+
 Non-blocking
 
 https://spring.io/guides/gs/async-method/

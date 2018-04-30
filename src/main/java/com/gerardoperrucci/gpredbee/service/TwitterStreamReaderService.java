@@ -2,13 +2,19 @@ package com.gerardoperrucci.gpredbee.service;
 
 
 //import org.springframework.context.event.EventListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Service;
+import org.springframework.messaging.handler.annotation.SendTo;
 //import org.springframework.boot.context.event.ApplicationReadyEvent;
 
 import twitter4j.*;
 
 @Service
 public class TwitterStreamReaderService {
+
+    @Autowired
+    public SimpMessageSendingOperations messagingTemplate;
 
     //Listener for startup
     //@EventListener(ApplicationReadyEvent.class)
@@ -30,8 +36,10 @@ public class TwitterStreamReaderService {
             }
 
             @Override
+            @SendTo("/topic/greetings")
             public void onStatus(Status status) {
                 System.out.println(status.getUser().getName() + " : " + status.getText()+ "  Tweeted AT: " + status.getCreatedAt());
+                messagingTemplate.convertAndSend("/topic/greetings", status.getText());
             }
 
             @Override
