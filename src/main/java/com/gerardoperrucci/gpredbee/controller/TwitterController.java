@@ -3,6 +3,7 @@ package com.gerardoperrucci.gpredbee.controller;
 import java.util.ArrayList;
 import java.util.List;
 // Spring
+import com.gerardoperrucci.gpredbee.service.TwitterStreamReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ import com.gerardoperrucci.gpredbee.dto.SearchDTO;
 import com.gerardoperrucci.gpredbee.dto.TopicDTO;
 import com.gerardoperrucci.gpredbee.model.Topic;
 import com.gerardoperrucci.gpredbee.repository.TopicRepository;
-
+import com.gerardoperrucci.gpredbee.service.TwitterStreamReaderService;
 
 
 @RestController
@@ -30,6 +31,9 @@ public class TwitterController {
 
     @Autowired
     private TopicRepository topicRepository;
+
+    @Autowired
+    private TwitterStreamReaderService twitterStreamReaderService;
 
     private Twitter twitter;
 
@@ -72,6 +76,10 @@ public class TwitterController {
     }
 
 
+    @GetMapping("suscribe")
+    public void suscribeTopic() {
+        twitterStreamReaderService.readTwitterFeed();
+    }
 
 
 }
