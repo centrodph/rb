@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/topic")
 public class TopicController {
 
