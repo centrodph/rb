@@ -61,6 +61,14 @@ Connect service or Controller with socket endpoint
 https://stackoverflow.com/questions/42207513/sending-message-to-client-periodically-via-spring-web-socket/42208928
 
 
+
+Listen tweets from user
+
+
+https://stackoverflow.com/questions/21845715/twitter4j-listen-to-tweets-from-a-particular-user
+
+
+
 Non-blocking
 
 https://spring.io/guides/gs/async-method/

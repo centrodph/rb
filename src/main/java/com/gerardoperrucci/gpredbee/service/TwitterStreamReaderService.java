@@ -20,7 +20,7 @@ public class TwitterStreamReaderService {
     //@EventListener(ApplicationReadyEvent.class)
     public void readTwitterFeed() {
 
-        System.out.println("STARTT");
+        System.out.println("Start Listen topics");
 
         StatusListener listener = new StatusListener() {
 

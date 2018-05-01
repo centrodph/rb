@@ -11,12 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 // Twiiter4j
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 // Custom
 import com.gerardoperrucci.gpredbee.dto.SearchDTO;
 import com.gerardoperrucci.gpredbee.dto.TopicDTO;
@@ -29,8 +24,6 @@ import com.gerardoperrucci.gpredbee.service.TwitterStreamReaderService;
 @RequestMapping("/twitter")
 public class TwitterController {
 
-    @Autowired
-    private TopicRepository topicRepository;
 
     @Autowired
     private TwitterStreamReaderService twitterStreamReaderService;
@@ -46,6 +39,23 @@ public class TwitterController {
         List<Status> tweets = search.getTweets();
         return tweets;
     }
+    public ResponseList<User> queryUser(String query) throws TwitterException {
+        int page = 1;
+        ResponseList<User> search = twitter.searchUsers(query, page);
+        return search;
+    }
+
+    @PostMapping("/searchByUser")
+    public List<?> searchByUserTweets(@RequestBody SearchDTO searchDTO) {
+        ResponseList<User> result;
+        try {
+            result = this.queryUser(searchDTO.getSearch());
+            return result;
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+        return  new ArrayList<>();
+    }
 
     @PostMapping("/search")
     public List<?> searchTweets(@RequestBody SearchDTO searchDTO) {
@@ -60,20 +70,7 @@ public class TwitterController {
     }
 
 
-    @PostMapping("topic")
-    public Topic createTopic(@RequestBody TopicDTO req) {
 
-        Topic topic = new Topic();
-        topic.setInterest(req.getInterest());
-        topic.setType(req.getType());
-        Topic saved = topicRepository.save(topic);
-        return saved;
-    }
-
-    @GetMapping("topic")
-    public List<Topic> createTopic() {
-        return topicRepository.findAll();
-    }
 
 
     @GetMapping("suscribe")

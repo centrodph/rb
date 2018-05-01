@@ -13,7 +13,17 @@ public class Topic {
     Long id;
 
     String interest;
+
     Integer type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getInterest() {
         return interest;
