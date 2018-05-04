@@ -1,9 +1,11 @@
 package com.gerardoperrucci.gpredbee.controller;
 
+import org.springframework.web.bind.annotation.*;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+@CrossOrigin(origins = "*")
 @Controller
 public class StreamController {
 

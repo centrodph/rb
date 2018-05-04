@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 // Spring
 import com.gerardoperrucci.gpredbee.service.TwitterStreamReaderService;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,8 @@ import com.gerardoperrucci.gpredbee.model.Topic;
 import com.gerardoperrucci.gpredbee.repository.TopicRepository;
 import com.gerardoperrucci.gpredbee.service.TwitterStreamReaderService;
 
-
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/twitter")
 public class TwitterController {
 
@@ -71,8 +72,12 @@ public class TwitterController {
 
 
 
+    @PostMapping("suscribe")
+    public void interestTopic(@RequestBody TopicDTO req) {
+        twitterStreamReaderService.readTwitterTopic(req);
+    }
 
-
+    //EJEMPLO
     @GetMapping("suscribe")
     public void suscribeTopic() {
         twitterStreamReaderService.readTwitterFeed();
