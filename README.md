@@ -8,7 +8,6 @@ https://gp-rb.herokuapp.com/
 https://www.getpostman.com/collections/376ddb0a589f696bc2f4
 
 
-
 ## Libraries
 
 http://twitter4j.org/en/configuration.html
